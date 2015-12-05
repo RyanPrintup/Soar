@@ -6,16 +6,21 @@ public class ByteBufferInputStream
     private byte[] buffer;
     
     /**
-     * Creates a new byte buffer stream based
-     * on a pre-existing buffer.
+     * Creates a new byte buffer stream from pre-existing buffer.
      * 
-     * @param buffer The byte buffer
+     * @param buffer    byte buffer
      */
     public ByteBufferInputStream(final byte[] buffer)
     {
         this.buffer = buffer;
     }
-    
+
+    /**
+     * Advance the buffer's position by count
+     *
+     * @param count    count to advance buffer
+     * @return         new buffer position
+     */
     private int advance(int count)
     {
         position += count;
@@ -25,11 +30,6 @@ public class ByteBufferInputStream
         }
         
         return position;
-    }
-    
-    public void skip(int count)
-    {
-        advance(count);
     }
 
     public byte readByte()

@@ -2,10 +2,13 @@ package com.ryanprintup.soar;
 
 import com.ryanprintup.soar.server.Server;
 
-public class Soar
+/**
+ * Core class handling singleton
+ */
+public final class Soar
 {
     private static Server _instance;
-    private static int _port = -1;
+    private static int port = -1;
     
     public Soar()
     {
@@ -14,7 +17,7 @@ public class Soar
     public static Server getServer()
     {
         if (_instance == null) {
-            _instance = new Server(_port);
+            _instance = new Server(port);
         }
         
         return _instance;
@@ -22,8 +25,8 @@ public class Soar
     
     public static void setPort(int port)
     {
-        if (_port == -1) {
-            _port = port;
+        if (port == -1) {
+            port = port;
         }
     }
 }

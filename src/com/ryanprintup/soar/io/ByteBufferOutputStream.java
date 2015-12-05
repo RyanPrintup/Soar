@@ -9,7 +9,7 @@ public class ByteBufferOutputStream
     
     /**
      * Creates a new byte buffer stream. The capacity is
-     * initially 32 bytes, this increases if necessary.
+     * initially {@value #DEFAULT_BUFFER_SIZE} bytes, this increases if necessary.
      */
     public ByteBufferOutputStream()
     {
@@ -17,16 +17,22 @@ public class ByteBufferOutputStream
     }
     
     /**
-     * Creates a new byte buffer stream with a
+     * Creates a new byte buffer stream with
      * specified capacity in bytes.
      * 
-     * @param size The initial capacity
+     * @param size    initial capacity
      */
     public ByteBufferOutputStream(int size)
     {
         this.buffer = new byte[size];
     }
-    
+
+    /**
+     * Advance the buffer's position by count
+     *
+     * @param count    count to advance buffer
+     * @return         new buffer position
+     */
     private int advance(int count)
     {
         position += count;
@@ -46,7 +52,7 @@ public class ByteBufferOutputStream
     /**
      * Expands the capacity of the buffer.
      * 
-     * @param size the amount to expand by
+     * @param size    amount of bytes to expand by
      */
     public void expand(int size)
     {
@@ -204,9 +210,8 @@ public class ByteBufferOutputStream
     public void writeString(String value)
     {
         byte[] stringBytes = value.getBytes();
-        long stringPayloadLength = stringBytes.length;
 
-        writeVLQ(stringPayloadLength);
+        writeVLQ(stringBytes.length);
         writeByteArray(stringBytes);
     }
 
