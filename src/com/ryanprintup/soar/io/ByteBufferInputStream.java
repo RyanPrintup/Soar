@@ -99,7 +99,7 @@ public class ByteBufferInputStream
     public int readInt16()
     {
 	return (readInt8() & 0xff) <<  8 |
-		    readInt8() & 0xff;
+	        readInt8() & 0xff;
     }
 
     public int readUInt16()
@@ -110,9 +110,9 @@ public class ByteBufferInputStream
     public int readInt32()
     {
 	return  (readInt8() & 0xff) << 24 |
-            (readInt8() & 0xff) << 16 |
-            (readInt8() & 0xff) <<  8 |
-             readInt8() & 0xff;
+	        (readInt8() & 0xff) << 16 |
+	        (readInt8() & 0xff) <<  8 |
+	         readInt8() & 0xff;
     }
     
     public long readUInt32() 
@@ -128,8 +128,8 @@ public class ByteBufferInputStream
                ((long) readInt8() & 0xff) << 32 |
                ((long) readInt8() & 0xff) << 24 |
                ((long) readInt8() & 0xff) << 16 |
-	           ((long) readInt8() & 0xff) <<  8 |
-	            (long) readInt8() & 0xff;
+               ((long) readInt8() & 0xff) <<  8 |
+	        (long) readInt8() & 0xff;
     }
 
     public long readUInt64()
