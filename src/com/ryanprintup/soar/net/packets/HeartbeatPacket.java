@@ -4,44 +4,45 @@ import com.ryanprintup.soar.io.ByteBufferInputStream;
 import com.ryanprintup.soar.io.ByteBufferOutputStream;
 import com.ryanprintup.soar.net.PacketTypes;
 
-public class ClientConnectPacket extends Packet
+public class HeartbeatPacket extends Packet
 {
-    private String name;
+    private long heartbeat;
 
-    public ClientConnectPacket()
+    public HeartbeatPacket()
     {
     }
 
-    public ClientConnectPacket(String name)
+    public HeartbeatPacket(long heartbeat)
     {
-        this.name = name;
+        this.heartbeat = heartbeat;
     }
 
     @Override
     public void read(ByteBufferInputStream stream)
     {
-        name = stream.readString();
+        this.heartbeat = stream.readVLQ();
     }
 
     @Override
     public void write(ByteBufferOutputStream stream)
     {
-        stream.writeString(name);
+        stream.writeVLQ(heartbeat);
     }
 
     @Override
     public byte getId()
     {
-        return PacketTypes.CLIENT_CONNCET_PACKET;
+        return PacketTypes.HEARTBEAT_PACKET;
     }
 
-    public void setName(String name)
+
+    public void setHearbeat(long hearbeat)
     {
-        this.name = name;
+        this.heartbeat = heartbeat;
     }
 
-    public String getName()
+    public long getHeartbeat()
     {
-        return name;
+        return heartbeat;
     }
 }
